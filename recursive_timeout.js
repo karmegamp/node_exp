@@ -1,15 +1,15 @@
 const i = () => {
     console.time()
-    console.log('funcion i')
+    console.log('funcion interval')
     console.timeEnd()
 }
 
 setInterval(i, 1000)
 
-// alternative to setInterval, since the execution time may not be the same there.
+// alternative to setInterval, since each interval execution time may not be same there.
 const f = () => {
     console.time()
-    console.log('function f')
+    console.log('function timeout')
     console.timeEnd()   
     setTimeout(f, 1000)
 }
