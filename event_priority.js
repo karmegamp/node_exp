@@ -1,5 +1,9 @@
 
     // Note, the execution order is reverse dispite the sequence
+    // if we are lucky then we see promise(P2) executed before process.netTick (P1)
+    // there are 3 job queues in the order of execution. 
+    // nextTick queue, promise micro task queue, timer macro task queue 
+
 
     // Macro Task
 
@@ -8,7 +12,7 @@
 
     // Low priority 2
     setTimeout( () => console.log(" setTimout(): Timeout timer P3-2"), 2)
-    
+
     // Low priority 1
     const id = setInterval( () => console.log("macro Tasks: \n setInterval(): Interval timer P3-1"))
     
