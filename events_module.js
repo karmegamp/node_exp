@@ -23,7 +23,7 @@ e.emit('multi-arg', 200, 300)
 // one time event
 e.once('kick-start', () => console.log('kick start'))
 e.emit('kick-start')
-e.emit('kick-start')
+e.emit('kick-start') // suppressed event
 
 // remove event handler, and check again the same event
 e.off('start', start)

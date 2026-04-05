@@ -1,8 +1,22 @@
 
-    // Note, the execution order is reverse dispite the sequence
-    // if we are lucky then we see promise(P2) executed before process.netTick (P1)
-    // there are 3 job queues in the order of execution. 
-    // nextTick queue, promise micro task queue, timer macro task queue 
+
+    // Order: Micro task queue, nextTick, Macro task queue
+    // Note, the execution order is always current context micro task, promise first,
+    // and if there is any emergency task like nextTick, then that will be executed, 
+    // finally macro tasks will be executed, like setInterval, setTimeout, setImmediate 
+
+
+    process.nextTick( () => console.log("emergency Task: \n process.nextTick() P2\n"))
+
+    new Promise( (resolve, reject) => {
+        const success = true
+        if (success === true) {
+            resolve('micro Task: \n promise: success P1')
+        } else{
+            reject('micro Task: \n promise: failed P1')
+        }
+    }).then( (resolve) => console.log(resolve))
+    .catch( (error) => console.log(error))
 
 
     // Macro Task
@@ -24,17 +38,30 @@
     new Promise( (resolve, reject) => {
         const success = true
         if (success === true) {
-            resolve('micro Task: \n promise: success P2')
+            resolve('micro Task: \n promise: success P1')
         } else{
-            reject('micro Task: \n promise: failed P2')
+            reject('micro Task: \n promise: failed P1')
         }
     }).then( (resolve) => console.log(resolve))
     .catch( (error) => console.log(error))
 
+  
+
     // Emergency Task
         
     // High priority
-    process.nextTick( () => console.log("emergency Task: \n process.nextTick() P1\n"))
+    process.nextTick( () => console.log("emergency Task: \n process.nextTick() P2\n"))
+
+    new Promise( (resolve, reject) => {
+        const success = true
+        if (success === true) {
+            resolve('micro Task: \n promise: success P1')
+        } else{
+            reject('micro Task: \n promise: failed P1')
+        }
+    }).then( (resolve) => console.log(resolve))
+    .catch( (error) => console.log(error))
+
 
     // exit with success
     process.exitCode = 0
