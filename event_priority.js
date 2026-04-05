@@ -6,14 +6,14 @@
     // finally macro tasks will be executed, like setInterval, setTimeout, setImmediate 
 
 
-    process.nextTick( () => console.log("emergency Task: \n process.nextTick() P2\n"))
+    process.nextTick( () => console.log("emergency Task1: \n process.nextTick() P2\n"))
 
     new Promise( (resolve, reject) => {
         const success = true
         if (success === true) {
-            resolve('micro Task: \n promise: success P1')
+            resolve('micro Task1: \n promise: success P1')
         } else{
-            reject('micro Task: \n promise: failed P1')
+            reject('micro Task1: \n promise: failed P1')
         }
     }).then( (resolve) => console.log(resolve))
     .catch( (error) => console.log(error))
@@ -38,9 +38,9 @@
     new Promise( (resolve, reject) => {
         const success = true
         if (success === true) {
-            resolve('micro Task: \n promise: success P1')
+            resolve('micro Task2: \n promise: success P1')
         } else{
-            reject('micro Task: \n promise: failed P1')
+            reject('micro Task2: \n promise: failed P1')
         }
     }).then( (resolve) => console.log(resolve))
     .catch( (error) => console.log(error))
@@ -50,14 +50,14 @@
     // Emergency Task
         
     // High priority
-    process.nextTick( () => console.log("emergency Task: \n process.nextTick() P2\n"))
+    process.nextTick( () => console.log("emergency Task2: \n process.nextTick() P2\n"))
 
     new Promise( (resolve, reject) => {
         const success = true
         if (success === true) {
-            resolve('micro Task: \n promise: success P1')
+            resolve('micro Task3: \n promise: success P1')
         } else{
-            reject('micro Task: \n promise: failed P1')
+            reject('micro Task3: \n promise: failed P1')
         }
     }).then( (resolve) => console.log(resolve))
     .catch( (error) => console.log(error))
